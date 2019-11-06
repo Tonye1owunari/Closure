@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>counter</button>
+    <button>reducer</button>
+    <hr>
+    <button id="click-me">Click me!</button>
+    <div id="message"></div>
+
+
+<script>
+// serious functions ==================================================================
+
+//test------------------------------------------------
+count = 0;
+function counter(){
+    count ++;
+    console.log(count);
+}
+function reducer(){
+    if(count==0){return;}
+    count--;
+    console.log(count);
+}
+const countBtn = document.querySelectorAll('button')[0];
+const reduceBtn = document.querySelectorAll('button')[1];
+
+countBtn.addEventListener('click', counter);
+reduceBtn.addEventListener('click', reducer);
+
+//closures ======================================================
+function makeCounter(){
+    let record = 0;
+    function recorder(){
+        record ++;
+        return record;
+    }
+    return recorder;
+}
+let doCount = makeCounter();
+//console.log(doCount());
+//console.log(doCount());
+//console.log(doCount());
+
+//creating closures with an event listener ---------------------------------
+window.addEventListener('load', ()=>{
+    let count = 0;
+    const div = document.querySelector('#message');
+
+    const button = document.querySelector('#click-me');
+    button.addEventListener('click', ()=>{
+        count++;
+        div.innerHTML = `You clicked ${count} times!`;
+        if(count > 4){
+            div.style.color = 'white';
+            div.style.backgroundColor = 'navy';
+        }
+    } );
+} );
+
+   
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+</script>
+</body>
+</html>
